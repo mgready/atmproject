@@ -96,6 +96,12 @@ public class Bank {
 		}
 		return null;
 	}
+
+	public Object getName() {
+		
+		return this.name;
+		
+	}
  
 	
 	
