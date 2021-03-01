@@ -15,15 +15,14 @@ public static void main ( String [] args) {
 		aUser.addAccount(newAccount);
 		theBank.addAccount(newAccount);
 		
-		User curUser;
-		
-		while(true) {
+		User theUser ;
+		do {
+            theUser = ATM.mainMenuPrompt(theBank, input);
 			
-			curUser = ATM.mainMenuPrompt(theBank, input);
-			
-			ATM.printUserMenu(curUser, input);
+			ATM.printUserMenu(theUser, input);
 		}
-		
+		while(true);
+	
 		
 	}
 public static void printUserMenu(User theUser , Scanner input) {
