@@ -34,7 +34,7 @@ public class User {
 		
 		this.accounts = new ArrayList<Account>();
 		
-		System.out.printf("New user %s , %s with ID %s created.\n", lastName, firstName , this.uuid );
+		System.out.printf("New user %s , %s with ID %s created.\n", lastName, firstName , this.uuid);
 		
 		
 	}

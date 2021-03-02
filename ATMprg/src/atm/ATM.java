@@ -15,11 +15,11 @@ public static void main ( String [] args) {
 		aUser.addAccount(newAccount);
 		theBank.addAccount(newAccount);
 		
-		User theUser ;
+		User curUser ;
 		do {
-            theUser = ATM.mainMenuPrompt(theBank, input);
+            curUser = ATM.mainMenuPrompt(theBank, input);
 			
-			ATM.printUserMenu(theUser, input);
+			ATM.printUserMenu(curUser, input);
 		}
 		while(true);
 	
@@ -32,7 +32,7 @@ public static void printUserMenu(User theUser , Scanner input) {
 	int choice ;
 	
 	do {
-		System.out.printf("Welcome &s, what would you like to do ?", theUser.getFirstName());
+		System.out.println("Welcome " + theUser.getFirstName() + " what would you like to do ?" );
 		System.out.println(" 1. Show account transactions history");
 		System.out.println(" 2. Withdrawl");
 		System.out.println(" 3. Deposit");
@@ -98,7 +98,7 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		
 		do {
 			System.out.printf("Enter the number (1-%d) of the account\n"+
-		                      "to transfer from: ");
+		                      "to deposit in: ", theUser.numAccounts());
 			toAcct =  input.nextInt()-1;
 			if(toAcct <0 || toAcct >= theUser.numAccounts()) {
 				System.out.println("Invalid account. Please try again.");
@@ -107,20 +107,16 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		acctBal = theUser.getAcctBalance(toAcct); 
 		
 		do {
-			System.out.printf("Enter the amount to transfer (max $%0.2f): $",
+			System.out.printf("Enter the amount to transfer (max $%.02f): $",
 					acctBal);
 			amount = input.nextDouble();
 			if ( amount < 0 ) {
 				System.out.println("Amount must be greater than zero.");
-			} else if (amount > acctBal) {
-				System.out.printf("Amount must not be greater than\n" + 
-			            "balance of $%0.2f.\n", acctBal);
-				
-			}
-	}while (amount <0 || amount >acctBal);
+			} 
+	}while (amount < 0 );
 		input.nextLine();
 		
-		System.out.println("Enter a memo: ");
+		System.out.print("Enter a memo: ");
 		memo = input.nextLine();
 		
 		theUser.addAcctTransaction(toAcct, -1*amount, memo);
@@ -135,7 +131,7 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		
 		do {
 			System.out.printf("Enter the number (1-%d) of the account\n"+
-		                      "to transfer from: ");
+		                      "to withdraw from: ", theUser.numAccounts());
 			fromAcct =  input.nextInt()-1;
 			if(fromAcct <0 || fromAcct >= theUser.numAccounts()) {
 				System.out.println("Invalid account. Please try again.");
@@ -144,14 +140,14 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		acctBal = theUser.getAcctBalance(fromAcct); 
 		
 		do {
-			System.out.printf("Enter the amount to transfer (max $%0.2f): $",
+			System.out.printf("Enter the amount to transfer (max $%.02f): $",
 					acctBal);
 			amount = input.nextDouble();
 			if ( amount < 0 ) {
 				System.out.println("Amount must be greater than zero.");
 			} else if (amount > acctBal) {
 				System.out.printf("Amount must not be greater than\n" + 
-			            "balance of $%0.2f.\n", acctBal);
+			            "balance of $%.02f.\n", acctBal);
 				
 			}
 	}while (amount <0 || amount >acctBal);
@@ -172,7 +168,7 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		
 		do {
 			System.out.printf("Enter the number (1-%d) of the account\n"+
-		                      "to transfer from: ");
+		                      "to transfer from: ",theUser.numAccounts());
 			fromAcct =  input.nextInt()-1;
 			if(fromAcct <0 || fromAcct >= theUser.numAccounts()) {
 				System.out.println("Invalid account. Please try again.");
@@ -182,7 +178,7 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		
 		do {
 			System.out.printf("Enter the number (1-%d) of the account\n"+
-		                      "to transfer to: ");
+		                      "to transfer to: ", theUser.numAccounts());
 			toAcct =  input.nextInt()-1; 
 			if(toAcct <0 || toAcct >= theUser.numAccounts()) {
 				System.out.println("Invalid account. Please try again.");
@@ -190,14 +186,14 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		}while(toAcct <0 || toAcct >= theUser.numAccounts());
 		
 		do {
-			System.out.printf("Enter the amount to transfer (max $%0.2f): $",
+			System.out.printf("Enter the amount to transfer (max $%.02f): $",
 					acctBal);
 			amount = input.nextDouble();
 			if ( amount < 0 ) {
 				System.out.println("Amount must be greater than zero.");
 			} else if (amount > acctBal) {
 				System.out.printf("Amount must not be greater than\n" + 
-			            "balance of $%0.2f.\n", acctBal);
+			            "balance of $%.02f.\n", acctBal);
 				
 			}
 		}while(amount <0 || amount >acctBal);

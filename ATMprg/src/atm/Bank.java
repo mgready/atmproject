@@ -28,8 +28,8 @@ public class Bank {
 		do {
 			
 			uuid ="";
-			for(int i = 0 ; i<0 ; i++) {
-				uuid += ((Integer)rng.nextInt(10)).toString();
+			for(int i = 0 ; i<len ; i++) {
+				uuid += ((Integer)rng.nextInt(6)).toString();
 			}
 			nonUnique = false;
 			for(User u : this.users) {
@@ -46,13 +46,13 @@ public class Bank {
 	public String getNewAccountUUID() {
 		String uuid;
 		Random rng = new Random();
-		int len = 10;
+		int len = 6;
 		boolean nonUnique;
 		
 		do {
 			
 			uuid ="";
-			for(int i = 0 ; i<0 ; i++) {
+			for(int i = 0 ; i<len ; i++) {
 				uuid += ((Integer)rng.nextInt(10)).toString();
 			}
 			nonUnique = false;

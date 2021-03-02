@@ -34,11 +34,11 @@ public class Transaction {
 		if(this.amount >= 0) {
 			return String.format("%s : $%.02f : %s",
 					this.timesamp.toString(),
-					this.amount, this.memo );
+					-this.amount, this.memo );
 		} else {
 			return String.format("%s : $(%.02f) : %s",
 					this.timesamp.toString(),
-					this.amount, this.memo );
+					-this.amount, this.memo );
 		}
 	}
 
