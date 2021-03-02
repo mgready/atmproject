@@ -133,7 +133,7 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 			System.out.printf("Enter the number (1-%d) of the account\n"+
 		                      "to withdraw from: ", theUser.numAccounts());
 			fromAcct =  input.nextInt()-1;
-			if(fromAcct <0 || fromAcct >= theUser.numAccounts()) {
+			if(fromAcct < 0 || fromAcct >= theUser.numAccounts()) {
 				System.out.println("Invalid account. Please try again.");
 			}
 		}while(fromAcct <0 || fromAcct >= theUser.numAccounts());

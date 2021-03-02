@@ -89,7 +89,7 @@ public class User {
 		return this.accounts.get(acctIdx).getBalance();
 	}
 
-	public Object getAcctUUID(int acctIdx) {
+	public String getAcctUUID(int acctIdx) {
 		
 		return accounts.get(acctIdx).getUUID();
 		
