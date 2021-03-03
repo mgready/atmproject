@@ -38,7 +38,7 @@ public class Account {
 		if(balance >= 0 ) {
 			return String.format("%s :$%.02f : %s", this.uuid, balance,this.name);
 		} else {
-			return String.format("%s :$(%.02f) : %s", this.uuid, balance,this.name);
+			return String.format("%s :$(%.02f) : %s", this.uuid, -balance,this.name);
 		}
 	}
 

@@ -141,22 +141,22 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		
 		do {
 			System.out.printf("Enter the amount to transfer (max $%.02f): $",
-					acctBal);
+					-1*acctBal);
 			amount = input.nextDouble();
 			if ( amount < 0 ) {
 				System.out.println("Amount must be greater than zero.");
-			} else if (amount > acctBal) {
+			} else if (amount > -1*acctBal) {
 				System.out.printf("Amount must not be greater than\n" + 
-			            "balance of $%.02f.\n", acctBal);
+			            "balance of $%.02f.\n", -1*acctBal);
 				
 			}
-	}while (amount <0 || amount >acctBal);
+	}while (amount <0 || amount > -1*acctBal);
 		input.nextLine();
 		
 		System.out.println("Enter a memo: ");
 		memo = input.nextLine();
 		
-		theUser.addAcctTransaction(fromAcct, -1*amount, memo);
+		theUser.addAcctTransaction(fromAcct, amount, memo);
 		
 	}
 	private static void transferFunds(User theUser, Scanner input) {
@@ -187,20 +187,20 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		
 		do {
 			System.out.printf("Enter the amount to transfer (max $%.02f): $",
-					acctBal);
+					-1*acctBal);
 			amount = input.nextDouble();
 			if ( amount < 0 ) {
 				System.out.println("Amount must be greater than zero.");
-			} else if (amount > acctBal) {
+			} else if (amount > -1*acctBal) {
 				System.out.printf("Amount must not be greater than\n" + 
-			            "balance of $%.02f.\n", acctBal);
+			            "balance of $%.02f.\n", -1*acctBal);
 				
 			}
-		}while(amount <0 || amount >acctBal);
+		}while(amount <0 || amount >-1*acctBal);
 		
-		theUser.addAcctTransaction(fromAcct, -1*amount , String.format(
+		theUser.addAcctTransaction(fromAcct, amount , String.format(
 				"Transfer to account %s" , theUser.getAcctUUID(toAcct)));
-		theUser.addAcctTransaction(toAcct, -1*amount , String.format(
+		theUser.addAcctTransaction(toAcct, amount , String.format(
 				"Transfer to account %s" , theUser.getAcctUUID(toAcct)));
 	}
 	private static void showTransHistory(User theUser, Scanner input) {
