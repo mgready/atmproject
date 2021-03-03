@@ -11,6 +11,18 @@ public static void main ( String [] args) {
 		
 		User aUser = theBank.addUser("Magzhan","Amangeldi","2334");
 		
+		User bUser = theBank.addUser("Andrey", "Mikhryakov", "4288");
+		
+		User cUser = theBank.addUser("Bigaly", "Amanzhayev", "1234");
+		
+		Account newAccount2 = new Account("Checking", cUser, theBank);
+		bUser.addAccount(newAccount2);
+		theBank.addAccount(newAccount2);
+		
+		Account newAccount1 = new Account("Checking", bUser, theBank);
+		bUser.addAccount(newAccount1);
+		theBank.addAccount(newAccount1);
+		
 		Account newAccount = new Account("Checking", aUser, theBank);
 		aUser.addAccount(newAccount);
 		theBank.addAccount(newAccount);
