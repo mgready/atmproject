@@ -71,7 +71,7 @@ public class User {
 		
 		System.out.printf("\n\n%s's accounts summary", this.firstName);
 		for(int i=0 ; i < this.accounts.size(); i++) {
-			System.out.printf("%d) %s\n", i+1 , this.accounts.get(i).getSummaryLine());
+			System.out.printf("%d) %s\n ", i+1 , this.accounts.get(i).getSummaryLine());
 		}
 		System.out.println();
 		
@@ -98,4 +98,5 @@ public class User {
 	public void addAcctTransaction(int acctIdx, double amount, String memo) {
 		this.accounts.get(acctIdx).addTransaction(amount, memo);
 	}
+	
 }

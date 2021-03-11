@@ -1,19 +1,58 @@
 package atm;
 
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 
 public class ATM{
 public static void main ( String [] args) {
+	try {
+		Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root","root");
+		
+		Statement myStmt = myConn.createStatement();
+		
+		ResultSet myRs = myStmt.executeQuery("SELECT * FROM `userslist");
+		
+		while (myRs.next()) {
+			System.out.println(myRs.getInt("user_id") +" "+ myRs.getString("first_name") + ", " + myRs.getString("second_name"));
+			
+		}
+	} catch(Exception e) {
+		e.printStackTrace();
+	}
 		
 		Scanner input = new Scanner(System.in);
 		
 		Bank theBank = new Bank("Bank of AITU");
 		
-		User aUser = theBank.addUser("Magzhan","Amangeldi","2334");
+		User aUser = theBank.addUser("Magzhan","Amangeldi","3222");
 		
-		User bUser = theBank.addUser("Andrey", "Mikhryakov", "4288");
+		User bUser = theBank.addUser("Andrew", "Michryakov", "2333");
 		
-		User cUser = theBank.addUser("Bigaly", "Amanzhayev", "1234");
+		User cUser = theBank.addUser("John", "Doe", "3222");
+		
+		User dUser = theBank.addUser("Michael", "Forester", "2222");
+		
+		User eUser = theBank.addUser("Dias", "Zheksenbayev", "4567");
+		
+		User fUser = theBank.addUser("Ablay", "Zhantore", "2451");
+		
+		Account newAccount3 = new Account("Checking", dUser, theBank);
+		bUser.addAccount(newAccount3);
+		theBank.addAccount(newAccount3);
+
+		Account newAccount4 = new Account("Checking", eUser, theBank);
+		bUser.addAccount(newAccount4);
+		theBank.addAccount(newAccount4);
+		
+		Account newAccount5 = new Account("Checking", fUser, theBank);
+		bUser.addAccount(newAccount5);
+		theBank.addAccount(newAccount5);
 		
 		Account newAccount2 = new Account("Checking", cUser, theBank);
 		bUser.addAccount(newAccount2);
@@ -26,6 +65,7 @@ public static void main ( String [] args) {
 		Account newAccount = new Account("Checking", aUser, theBank);
 		aUser.addAccount(newAccount);
 		theBank.addAccount(newAccount);
+		
 		
 		User curUser ;
 		do {
@@ -132,6 +172,17 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		memo = input.nextLine();
 		
 		theUser.addAcctTransaction(toAcct, -1*amount, memo);
+		try {
+			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root","root");
+			
+			Statement myStmt = myConn.createStatement();
+			
+			String sql="update ATM set atm_balance = atm_balance +"+amount+" where atm_id=1";
+			
+			myStmt.execute(sql);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	private static void withdrawlFunds(User theUser, Scanner input) {
@@ -169,6 +220,17 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		memo = input.nextLine();
 		
 		theUser.addAcctTransaction(fromAcct, amount, memo);
+		try {
+			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root","root");
+			
+			Statement myStmt = myConn.createStatement();
+			
+			String sql="update ATM set atm_balance = atm_balance -"+amount+" where atm_id=1";
+			
+			myStmt.execute(sql);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	private static void transferFunds(User theUser, Scanner input) {
@@ -230,4 +292,18 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		
 		theUser.printAcctTransHistory(theAcct);
 	}
+	public static void UpdateAccBalance(double balance ) {
+		try {
+			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root","root");
+			
+			Statement myStmt = myConn.createStatement();
+			
+			ResultSet myRs = myStmt.executeQuery("SELECT * FROM `userslist");
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
