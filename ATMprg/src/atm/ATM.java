@@ -32,7 +32,7 @@ public static void main ( String [] args) {
 		
 		User aUser = theBank.addUser("Magzhan","Amangeldi","3222");
 		
-		User bUser = theBank.addUser("Andrew", "Michryakov", "2333");
+		User bUser = theBank.addUser("Andrew", "Mikryakov", "2333");
 		
 		User cUser = theBank.addUser("John", "Doe", "3222");
 		
