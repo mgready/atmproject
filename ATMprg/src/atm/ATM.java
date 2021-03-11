@@ -220,10 +220,15 @@ public static User mainMenuPrompt(Bank theBank, Scanner input) {
 		memo = input.nextLine();
 		
 		theUser.addAcctTransaction(fromAcct, amount, memo);
+		
 		try {
+			
 			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root","root");
 			
 			Statement myStmt = myConn.createStatement();
+			
+			Statement stmt = myConn.createStatement();
+			
 			
 			String sql="update ATM set atm_balance = atm_balance -"+amount+" where atm_id=1";
 			
